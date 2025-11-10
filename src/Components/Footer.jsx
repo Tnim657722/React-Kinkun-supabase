@@ -9,7 +9,7 @@ export default function Footer() {
       >
         Created by Tnim657722 SAU
         <br />
-        Copyright © 2024 All rights reserved.
+        Copyright © 2025 All rights reserved.
       </h3>
     </div>
   );
