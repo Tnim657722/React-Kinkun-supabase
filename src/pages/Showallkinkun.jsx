@@ -56,7 +56,7 @@ export default function Showallkinkun() {
 
         <div className="my-8 flex justify-end">
           <Link
-            to="/allkinkun"
+            to="/addkinkun"
             className="bg-blue-700 p-3 rounded 
                               hover:bg-blue-800 text-white "
           >
@@ -77,7 +77,35 @@ export default function Showallkinkun() {
             </tr>
           </thead>
           <tbody>
-            
+            {kinkuns.map((kinkun) => (
+              <tr key={kinkun.id}>
+                <td className="border border-gray-700 p-2 text-center">
+                  {kinkun.food_image_url == " " ||
+                  kinkun.food_image_url == null ? (
+                    "-"
+                  ) : (
+                    <img
+                      src={kinkun.food_image_url}
+                      alt="รูปอาหาร"
+                      className="w-20"
+                    />
+                  )}
+                </td>
+                <td className="border border-gray-700 p-2">
+                  {kinkun.food_name}
+                </td>
+                <td className="border border-gray-700 p-2">
+                  {kinkun.food_where}
+                </td>
+                <td className="border border-gray-700 p-2">
+                  {kinkun.food_pay}
+                </td>
+                <td className="border border-gray-700 p-2">
+                  {new Date(kinkun.created_at).toLocaleDateString("th-TH")}
+                </td>
+                <td className="border border-gray-700 p-2">แก้ไข | ลบ</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
