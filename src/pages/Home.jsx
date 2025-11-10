@@ -8,6 +8,7 @@ import { FaGithubSquare } from "react-icons/fa";
 import Footer from "../Components/Footer";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert2";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -16,7 +17,13 @@ export default function Home() {
   const handleAccessAppCLick = () => {
     //validate secure code
     if (secureCode === "") {
-      alert("กรุณาใส่รหัสเข้าใช้งาน");
+      //alert("กรุณาใส่รหัสเข้าใช้งาน");
+      swal.fire({
+        title: "กรุณาใส่รหัสเข้าใช้งาน",
+        icon: "warning",
+        confirmButtonText: "ตกลง",
+   
+      });
       return;
     }
     if (secureCode.toUpperCase() === "SAU") {
@@ -25,7 +32,12 @@ export default function Home() {
         //หรือ window.location.href = "/showallkinkun";
       }
     } else {
-      alert("รหัสเข้าใช้งานไม่ถูกต้อง");
+      //alert("รหัสเข้าใช้งานไม่ถูกต้อง");
+      swal.fire({
+        title: "รหัสเข้าใช้งานไม่ถูกต้อง",
+        icon: "error",
+        confirmButtonText: "ตกลง",
+      });
     }
   };
 
