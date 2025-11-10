@@ -4,12 +4,13 @@ import { IoLogoFacebook } from "react-icons/io";
 import { FaLine } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaSquareTwitter } from "react-icons/fa6";
-import { FaGithubSquare } from "react-icons/fa";
+import { FaGithubSquare } from "react-icons/fa"; 
+import Footer from "../Components/Footer";
 
 export default function Home() {
   return (
     <div>
-      <div className="w-10/12 mx-auto border-gray-300 p-4 shadow-md my-10 rounded-lg">
+      <div className="w-10/12 mx-auto border-gray-300 p-4 shadow-md mt-20 rounded-lg">
         <h1 className="text-2xl font-bold text-center text-blue-700">
           Kinkun APP (Supabase)
         </h1>
@@ -24,21 +25,29 @@ export default function Home() {
         "
           className="p-3 border-gray-400 rounded-md mt-5 w-full"
         />
-        <button className="w-full bg-blue-700 p-4 rounded-md text-white mt-5">
+        <button className="w-full bg-blue-700 p-3 rounded-md text-white 
+        mt-5 hover:bg-blue-500 cursor-pointer">
           เข้าใช้งาน
         </button>
         <div className="mt-5 flex justify-center gap-5">
           <a href="#">
-            <IoLogoFacebook className="text-2xl text-gray-700" />
+            <IoLogoFacebook className="text-2xl text-gray-700 hover:text-pink-300" />
           </a>
           <a href="#">
-            <FaLine className="text-2xl text-gray-700" />
+            <FaLine className="text-2xl text-gray-700 hover:text-pink-300" />
           </a>
-          <a href="#"><FaSquareInstagram className="text-2xl text-gray-700"/></a>
-          <a href="#"><FaSquareTwitter className="text-2xl text-gray-700" /></a>
-          <a href="#"><FaGithubSquare className="text-2xl text-gray-700" /></a>
+          <a href="#">
+            <FaSquareInstagram className="text-2xl text-gray-700 hover:text-pink-300" />
+          </a>
+          <a href="#">
+            <FaSquareTwitter className="text-2xl text-gray-700 hover:text-pink-300" />
+          </a>
+          <a href="#">
+            <FaGithubSquare className="text-2xl text-gray-700 hover:text-pink-300" />
+          </a>
         </div>
       </div>
+      <Footer /> 
     </div>
   );
 }
