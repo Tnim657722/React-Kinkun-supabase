@@ -99,6 +99,8 @@ export default function Addkinkun() {
   
     
   };
+  //สร้างฟังก์ชั่นลบข้อมูลออกจาก table
+  
 
   return (
     <div>

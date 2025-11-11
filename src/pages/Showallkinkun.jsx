@@ -41,6 +41,51 @@ export default function Showallkinkun() {
       console.log("Fecth error :", ex);
     }
   }, []);
+ //สร้างฟัง์ชันลบข้อมูลออกจาก table และ storage บน Supabase
+  const handleDeleteClick = async (id, food_image_url) => {
+    // แสดงข้อความยืนยันการลบข้อมูล
+    const result = await Swal.fire({
+      icon: "question",
+      iconColor: "#E81A07",
+      title: "คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลการกินนี้ ?",
+      showConfirmButton: true,
+      confirmButtonText: "ตกลง",
+      confirmButtonColor: "#E81A07",
+      showCancelButton: true,
+      cancelButtonText: "ยกเลิก",
+      cancelButtonColor: "#3085d6",
+    });
+ 
+    //ตรวจสอบ result ว่าผู้ใช้เลือกตกลง หรือยกเลิก
+    if(result){
+      // ลบรูปออกจาก storage บน supabase ถ้ามี
+      if(food_image_url != ''){
+        //ตัดเอาแค่ชื่อรูป
+        const image_name = food_image_url.split('/').pop();
+ 
+        const {error} = await supabase.storage.from('kinkun_bk').remove([image_name]);
+ 
+        if(error){
+          alert("เกิดข้อผิดพลาดในการลบรูปภาพ กรุณาลองใหม่อีกครั้ง");
+          return;
+        }
+      }
+ 
+      // ลบข้อมูลออกจาก table บน supabase
+      const { error } = await supabase.from('kinkun_tb').delete().eq('id', id);
+ 
+      if(error){
+          alert("เกิดข้อผิดพลาดในการลบข้อมูล กรุณาลองใหม่อีกครั้ง");
+          return;
+      }
+ 
+      alert("ลบข้อมูลการกินเรียบร้อยแล้ว");
+ 
+      //ลบข้อมูลออกจาก UI
+      setKinkuns(kinkuns.filter((kinkun) => kinkun.id !== id));
+      //หรือ window.location.reload()
+    }    
+  }
 
   return (
     <div>
@@ -103,7 +148,11 @@ export default function Showallkinkun() {
                 <td className="border border-gray-700 p-2">
                   {new Date(kinkun.created_at).toLocaleDateString("th-TH")}
                 </td>
-                <td className="border border-gray-700 p-2">แก้ไข | ลบ</td>
+                <td className="border border-gray-700 p-2">
+                  <Link to="/editkinkun/ +{kinkun.id}"
+                  className="text-green-500 underline mx-2 cursor-pointer">แก้ไข |</Link> <button
+                  className="text-red-500 underline mx-2 cursor-pointer" onClick={()=>handleDeleteClick(kinkun.id,kinkun.food_image_url)}>ลบ</button>
+                </td>
               </tr>
             ))}
           </tbody>
