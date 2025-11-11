@@ -49,7 +49,7 @@ export default function Showallkinkun() {
           Kinkun App (Supabase)
         </h1>
         <h1 className="text-2xl font-bold text-center text-blue-700">
-          ข้อมูลบันทึกการกิน
+          ข้อมูลการกิน
         </h1>
         <img src={food} alt="กินกัน" className="mx-auto w-20 mt-5" />
         {/*ส่วนแสดงปุ่มเพิ่ม เพื่อเปิดหน้าจอ /allkinkun*/}
